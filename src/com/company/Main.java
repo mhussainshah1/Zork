@@ -1,26 +1,44 @@
-package com.company;
+
 import java.util.Scanner;
 
- class Zork {
-     public static int counter=0;
+class Zork {
+    public static int counter=0;
     public static void main(String[] args) {
+        System.out.println("|----------------------------|");
+        System.out.println("|****************************|");
+        System.out.println("|***WELLCOME TO THE PROGRAM**|");
+        System.out.println("|************ZORK************|");
+        System.out.println("|----------------------------|");
         foyer();
     }
     public static void foyer(){
         counter++;
-        System.out.println("ROOM 1 AND CONTAIN  IT CONTAIN DEAD SCORPION");
+        String answer="";
+        System.out.println("'ROOM:'  FOYER   'CONTAIN:'   DEAD SCORPION    'DIRECTION TO:'  (n2)\n");
         System.out.println();
-        System.out.println("door to  ROOM 2");
-        front_room();
+        while(true){
+            System.out.println("type n2 OR press 'q' to exit");
+            Scanner scanner=new Scanner(System.in);
+            answer=scanner.nextLine();
+            if(!(answer.equalsIgnoreCase("q"))){
+                front_room();
+            }
+            else if((answer.equalsIgnoreCase("q"))){
+                System.out.println("YOU VISIT "+counter +" ROOM");
+                System.out.println("THANKS");
+                System.exit(0);
+            }
+            else {
+                System.out.println("please enter the correct choice");
+            }
+        }
     }
     public static void front_room(){
         counter++;
         String answer="";
-        System.out.println("ROOM 2 AND IT CONTAIN PIANO");
-        System.out.println();
-        System.out.println("you have currently three option to d/t room");
+        System.out.println("'ROOM:'  FRONT_ROOM   'CONTAIN:'   PIANO    'DIRECTION TO:'  (s1|w3|e4)\n");
         while(true){
-            System.out.println("which room you want to travel..(s1|w3|e4) OR press 'q' to exit");
+            System.out.println("which room you want to travel.. OR press 'q' to exit");
             Scanner scanner=new Scanner(System.in);
             answer=scanner.nextLine();
             if(!(answer.equalsIgnoreCase("q"))){
@@ -54,11 +72,9 @@ import java.util.Scanner;
     public static void library(){
         counter++;
         String answer="";
-        System.out.println("ROOM 3 AND CONTAIN SPIDERS");
-        System.out.println();
-        System.out.println("you have currently two option to d/t room");
+        System.out.println("'ROOM:'  LIBRARY   'CONTAIN:'   SPIDERS    'DIRECTION TO:'  (n5|e2)\n");
         while(true){
-            System.out.println("which room you want to travel..(e2|n5)  OR press 'q' to exit");
+            System.out.println("which room you want to travel.. OR press 'q' to exit");
             Scanner scanner=new Scanner(System.in);
             answer=scanner.nextLine();
             if(!(answer.equalsIgnoreCase("q"))){
@@ -88,11 +104,9 @@ import java.util.Scanner;
     public static void kitchen(){
         counter++;
         String answer="";
-        System.out.println("ROOM 4 AND CONTAIN KITCHEN");
-        System.out.println();
-        System.out.println("you have currently two option to d/t room");
+        System.out.println("'ROOM:'  KITCHEN   'CONTAIN:'   BATS    'DIRECTION TO:'  (w2|n7)\n");
         while(true){
-            System.out.println("which room you want to travel..(w2|n7)  OR press 'q' to exit");
+            System.out.println("which room you want to travel..  OR press 'q' to exit");
             Scanner scanner=new Scanner(System.in);
             answer=scanner.nextLine();
             if(!(answer.equalsIgnoreCase("q"))){
@@ -122,12 +136,10 @@ import java.util.Scanner;
     public static void dining_room(){
         counter++;
         String answer="";
-        System.out.println("ROOM 5 AND CONTAIN DUST EMPTY BOX");
-        System.out.println();
-        System.out.println("you have currently ONE option to d/t room");
+        System.out.println("'ROOM:'  DINING_ROOM   'CONTAIN:'  DUST EMPTY BOX    'DIRECTION TO:'  (s3)\n");
 
         while (true){
-            System.out.println("which room you want to travel..(s3)  OR press 'q' to exit");
+            System.out.println("which room you want to travel..  OR press 'q' to exit");
             Scanner scanner=new Scanner(System.in);
             answer=scanner.nextLine();
             if(answer.equalsIgnoreCase("s3")){
@@ -146,11 +158,10 @@ import java.util.Scanner;
     public static void valut(){
         counter++;
         String answer="";
-        System.out.println("ROOM 6 AND CONTAIN 3 WALKING SKELETONS");
-        System.out.println();
-        System.out.println("you have currently TWO option to d/t room");
+        System.out.println("'ROOM:'  VALUT   'CONTAIN:'  3 WALKING SKELETONS    'DIRECTION TO:'  (e7|e8)\n");
+
         while(true){
-            System.out.println("which room you want to travel..(e7|e8)  OR press 'q' to exit");
+            System.out.println("which room you want to travel..  OR press 'q' to exit");
             Scanner scanner=new Scanner(System.in);
             answer=scanner.nextLine();
             int random=(int)(Math.random()*10+1);
@@ -174,11 +185,10 @@ import java.util.Scanner;
     public static void parlor(){
         counter++;
         String answer="";
-        System.out.println("ROOM 7 AND CONTAIN TREASURE CHEST");
-        System.out.println();
-        System.out.println("you have currently TWO option to d/t room");
+        System.out.println("'ROOM:'  PARLOR   'CONTAIN:'  TREASURE CHEST    'DIRECTION TO:'  (e6|s4)\n");
+
         while (true){
-            System.out.println("which room you want to travel..(e6|s4)  OR press 'q' to exit");
+            System.out.println("which room you want to travel..  OR press 'q' to exit");
             Scanner scanner=new Scanner(System.in);
             answer=scanner.nextLine();
             if(answer.equalsIgnoreCase("e6")){
@@ -200,12 +210,11 @@ import java.util.Scanner;
     public static void secret_room(){
         counter++;
         String answer="";
-        System.out.println("YOU ARE IN SECRET ROOM RIGHT NOW");
-        System.out.println("ROOM 8 AND CONTAIN PILES OF GOLD");
-        System.out.println();
-        System.out.println("you have currently ONE option to d/t room");
+        System.out.println("YOU ARE IN SECRET ROOM RIGHT NOW\n");
+        System.out.println("'ROOM:'  SECRET_ROOM   'CONTAIN:'  PILES OF GOLD    'DIRECTION TO:'  (w6)\n");
+
         while (true){
-            System.out.println("which room you want to travel..(w6)  OR press 'q' to exit");
+            System.out.println("which room you want to travel..  OR press 'q' to exit");
 
             Scanner scanner=new Scanner(System.in);
             answer=scanner.nextLine();
