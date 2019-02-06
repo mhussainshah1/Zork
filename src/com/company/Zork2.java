@@ -1,50 +1,37 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+        import java.util.*;
 
 /**
+ *
  * ___________________________________
- * |          |           |     8      |
- * |          |           | Secret Rm) |
- * |     5    |    6      |_____  _____|
- * |(dinning) |  (Vault)  |     7      |
- * |          |           | (Parlor)   |
- * |_____ ____|___________|_____  _____|
- * |          |           |            |
- * |    3     |    2      |     4      |
- * |(Library) | (Front Rm)| (Kitchen)  |
- * |__________|_____ _____|____________|
- * |           |
- * |     1     |
- * | (Foyer)   |
- * |_____ _____|
+ *|          |           |     8      |
+ *|     5    |    6      |_Secret Rm)_|
+ *|(dinning) |  (Vault)  |     7      |
+ *|_____ ____|___________|__(Parlor)__|
+ *|          |           |            |
+ *|    3     |    2      |     4      |
+ *|(Library) | (Front Rm)| (Kitchen)  |
+ *|__________|_____ _____|____________|
+ *           |           |
+ *           |     1     |
+ *           | (Foyer)   |
+ *           |_____ _____|
  */
-public class Zork1 {
+public class Zork2 {
 
-    static int totalMoney = 0;
-    static Map<Integer, Boolean> visited = new HashMap<>();
-    static Map<Integer, String> items = new HashMap<>();
-
-    static Map<Integer, Double> money = new HashMap<>();
-    static Scanner keyboard = new Scanner(System.in);
     static int count = 0;
-    static boolean found = false;
-    static int roomCharacter = getRandom(1, 6);
+    static int randomAppr = 1 + (int) (Math.random() * 7);
+    static ArrayList<String> arRoom = new ArrayList<String>();
+    static ArrayList<String> arSeen = new ArrayList<String>();
 
-    //public static int roomCharacter = 0;
-
-    public static int getRandom(int min, int max) {
-        return min + ((int) (Math.random() * max));
-    }
-
-    public static void mula() {
-        int money = getRandom(1, 1000);
+    public static void mula(){
+        Scanner keyboard = new Scanner(System.in);
+        int money = 1 + (int) (Math.random() * 1000);
         System.out.println("You found " + "$" + money + " in the room!");
         System.out.print("Would you like to take it? (y/n): ");
         String answer = keyboard.next();
-        if (answer.equals("y")) {
+        if(answer.equals("y")){
             count += money;
             System.out.println("You now have $" + count);
         } else {
@@ -52,21 +39,26 @@ public class Zork1 {
         }
     }
 
-    public static void newTroll(int room) {
-        if (room == roomCharacter) {
+    public static void newTroll(){
+        int troll = 3;
+        if(troll == randomAppr){
+            count = 0;
             System.out.println("A troll has appeared in the room!");
             System.out.println("He has taken all of your money!");
-            totalMoney = 0;//money.clear();
-            System.out.println("You now have $" + totalMoney);
-            roomCharacter = 9;
-         }
+            System.out.println("You now have $" + count);
+        }
     }
+
+    static Map<Integer,Boolean> visited = new HashMap<>();
+    static boolean found = false;
+    static Map<Integer,Double> money = new HashMap<>();
+    static Scanner keyboard = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        //System.out.println("Enter Castle - Choice is (n)");
+        //System.out.println("Enter house - Choice is (n)");
         String answer;
-        char direction = 'q', directionInput;
+        char direction = '1', directionInput;
         int room = 1;
         do {
 //            System.out.println("You are in room = " + room);
@@ -103,29 +95,32 @@ public class Zork1 {
                     room = secretRoom(direction);
                     break;
                 default:
-                    System.out.println("Invalid Room");
+                    System.out.println("Room = 0");
+                    System.exit(1);
                     break;
             }
-//            System.out.print("Do you want to go another room (y/n): ");
-//            answer = keyboard.next();
-        } while (true);//while(answer.equals("y"));
-        //exit();
-    }
 
-    public static void exit() {
+            System.out.print("Do you want to go another room (y/n): ");
+            answer = keyboard.next();
+
+        } while(answer.equals("y"));
+
         int random = 1 + (int) (Math.random() * 100);
         if (random <= 25) {
             System.out.println("You are followed by ghost");
         }
-        System.out.println("You have visited: " + (1 + visited.size()) + " room(s)");
-        System.out.println("You have seen the following items: " + items);
+
+        //iterating over keys
+        int roomVisited =0;
+        for (int i : visited.keySet()) {
+            roomVisited++;
+        }
+        System.out.println("You have visited: " + roomVisited + " room(s)");
     }
 
-    //1
     public static int foyer(char direction) {
-        System.out.println("You are in Room# 1 foyer \tcontains : dead scorpion\tYou can only go (n/q)");
-        items.put(1, "Dead Scorpion");
-        visited.put(1, true);
+        System.out.println("You are in Room# 1 foyer \tcontains : dead scorpion");
+        System.out.println("You can only go (n/q)");
         System.out.print("Enter Direction: ");
         direction = keyboard.next().charAt(0);
         int room = 1;
@@ -134,24 +129,20 @@ public class Zork1 {
                 room = 2;
                 break;
             case 'q':
-                exit();
                 System.exit(0);
-                break;
             default:
                 room = 1;
-                System.out.println(room + " Invalid direction " + direction + " in 1");
+                System.out.println(room + " Invalid direction " + direction + " in 1" );
         }
-
+        visited.put(1,true);
         return room;
     }
 
-    //2
     public static int frontRoom(char direction) {
-        System.out.println("You are in Room# 2 front Room \tContains : piano \tYou can only go (s/w/e)");
+        System.out.println("You are in Room# 2 front Room \tContains : piano");
         mula();
         newTroll();
-        items.put(2, "Piano");
-        visited.put(2, true);
+        System.out.println("You can only go (w/s/e)");
         System.out.print("Enter Direction: ");
         direction = keyboard.next().charAt(0);
         int room = 2;
@@ -167,19 +158,17 @@ public class Zork1 {
                 break;
             default:
                 room = 2;
-                System.out.println(room + " Invalid direction " + direction + " in 2");
+                System.out.println(room +" Invalid direction " + direction + " in 2");
         }
-
+        visited.put(2,true);
         return room;
     }
 
-    //3
     public static int library(char direction) {
-        System.out.println("You are in Room# 3 library \tIt contains : spider \tYou can only go (e/n)");
+        System.out.println("You are in Room# 3 library \tIt contains : spider");
         mula();
         newTroll();
-        items.put(3, "Spider");
-        visited.put(3, true);
+        System.out.println("You can only go (e/n)");
         System.out.print("Enter Direction: ");
         direction = keyboard.next().charAt(0);
         int room = 3;
@@ -192,19 +181,17 @@ public class Zork1 {
                 break;
             default:
                 room = 3;
-                System.out.println(room + "Invalid direction " + direction + " in 3");
+                System.out.println(room +"Invalid direction " + direction + " in 3");
         }
-
+        visited.put(3,true);
         return room;
     }
 
-    //4
     public static int kitchen(char direction) {
-        System.out.println("You are in Room# 4 Kitchen \tIt contains : bats \tYou can only go (w/n)");
+        System.out.println("You are in Room# 4 Kitchen \tIt contains : bats");
         mula();
         newTroll();
-        items.put(4, "Bats");
-        visited.put(4, true);
+        System.out.println("You can only go (w/n)");
         System.out.print("Enter Direction: ");
         direction = keyboard.next().charAt(0);
         int room = 4;
@@ -216,19 +203,18 @@ public class Zork1 {
                 room = 7;
                 break;
             default:
-                room = 4;
-                System.out.println(room + " Invalid direction " + direction + " in 4");
+                room =4;
+                System.out.println(room +" Invalid direction " + direction + " in 4");
         }
+        visited.put(4,true);
         return room;
     }
 
-    //5
     public static int diningRoom(char direction) {
-        System.out.println("You are in Room# 5 Dining Room \tIt contains : dust empty box \tYou can only go (s)");
+        System.out.println("You are in Room# 5 Dining Room \tIt contains : dust empty box");
         mula();
         newTroll();
-        items.put(5, "Dust Empty Box");
-        visited.put(5, true);
+        System.out.println("You can only go (s)");
         System.out.print("Enter Direction: ");
         direction = keyboard.next().charAt(0);
         int room = 5;
@@ -237,27 +223,26 @@ public class Zork1 {
                 room = 3;
                 break;
             default:
-                room = 5;
-                System.out.println(room + " Invalid direction " + direction + " in 5");
+                room =5;
+                System.out.println(room +" Invalid direction " + direction + " in 5");
         }
-
+        visited.put(5,true);
         return room;
     }
 
-    //6
     public static int vault(char direction) {
-        System.out.println("You are in Room# 6 vault\tIt contains : 3 walking skeletons \tYou can only go (e)");
+        System.out.println("You are in Room# 6 vault\tIt contains : 3 walking skeletons");
         mula();
         newTroll();
-        items.put(6, "3 Walking Skeletons");
-        visited.put(6, true);
+        System.out.println("You can only go (e)");
         System.out.print("Enter Direction: ");
         direction = keyboard.next().charAt(0);
         int room = 6;
         switch (direction) {
             case 'e':
-                if (isFound()) {
-                    System.out.print("Enter the room to go (7/8): ");
+                if(isFound()) {
+                    System.out.println("HOORAH!!! You have found SECRET Room !!!");
+                    System.out.print("Enter the room to go (7/8)");
                     int roomSel = keyboard.nextInt();
                     switch (roomSel) {
                         case 7:
@@ -282,21 +267,18 @@ public class Zork1 {
                 }
                 break;
             default:
-                room = 6;
+                room =6;
                 System.out.println(room + "Invalid direction " + direction + " in 6");
         }
-
+        visited.put(6,true);
         return room;
     }
 
-    //7
     public static int parlor(char direction) {
         System.out.println("You are in Room# 7 parlor\tContains : treasure chest)");
         mula();
         newTroll();
-        items.put(7, "Treasure Chest");
-        visited.put(7, true);
-        System.out.println("You can only go (w/s");
+        System.out.println("You can only go (w/s)");
         System.out.print("Enter Direction: ");
         direction = keyboard.next().charAt(0);
         int room = 7;
@@ -311,18 +293,15 @@ public class Zork1 {
                 room = 7;
                 System.out.println(room + " Invalid direction " + direction + " in 7");
         }
-
+        visited.put(7,true);
         return room;
     }
 
-    //8
     public static int secretRoom(char direction) {
-        System.out.println("HOORAH!!! You have found SECRET Room !!!");
-        System.out.println("You are in Room# 8 Secret \tContains : piles of gold\tYou can only go (w)");
+        System.out.println("You are in Room# 8 Secret \tContains : piles of gold");
         mula();
         newTroll();
-        items.put(8, "Piles of Gold");
-        visited.put(8, true);
+        System.out.println("You can only go (w)");
         System.out.print("Enter Direction: ");
         direction = keyboard.next().charAt(0);
         int room = 8;
@@ -334,11 +313,11 @@ public class Zork1 {
                 room = 8;
                 System.out.println(room + " Invalid direction " + direction + " in 8");
         }
-
+        visited.put(8,true);
         return room;
     }
 
-    public static boolean isFound() {
+    public static boolean isFound(){
         return found;
     }
 }
