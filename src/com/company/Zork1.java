@@ -149,7 +149,7 @@ public class Zork1 {
     public static int frontRoom(char direction) {
         System.out.println("You are in Room# 2 front Room \tContains : piano \tYou can only go (s/w/e)");
         mula();
-        newTroll();
+        newTroll(2);
         items.put(2, "Piano");
         visited.put(2, true);
         System.out.print("Enter Direction: ");
@@ -177,7 +177,7 @@ public class Zork1 {
     public static int library(char direction) {
         System.out.println("You are in Room# 3 library \tIt contains : spider \tYou can only go (e/n)");
         mula();
-        newTroll();
+        newTroll(3);
         items.put(3, "Spider");
         visited.put(3, true);
         System.out.print("Enter Direction: ");
@@ -202,7 +202,7 @@ public class Zork1 {
     public static int kitchen(char direction) {
         System.out.println("You are in Room# 4 Kitchen \tIt contains : bats \tYou can only go (w/n)");
         mula();
-        newTroll();
+        newTroll(4);
         items.put(4, "Bats");
         visited.put(4, true);
         System.out.print("Enter Direction: ");
@@ -226,7 +226,7 @@ public class Zork1 {
     public static int diningRoom(char direction) {
         System.out.println("You are in Room# 5 Dining Room \tIt contains : dust empty box \tYou can only go (s)");
         mula();
-        newTroll();
+        newTroll(5);
         items.put(5, "Dust Empty Box");
         visited.put(5, true);
         System.out.print("Enter Direction: ");
@@ -248,7 +248,7 @@ public class Zork1 {
     public static int vault(char direction) {
         System.out.println("You are in Room# 6 vault\tIt contains : 3 walking skeletons \tYou can only go (e)");
         mula();
-        newTroll();
+        newTroll(6);
         items.put(6, "3 Walking Skeletons");
         visited.put(6, true);
         System.out.print("Enter Direction: ");
@@ -293,7 +293,7 @@ public class Zork1 {
     public static int parlor(char direction) {
         System.out.println("You are in Room# 7 parlor\tContains : treasure chest)");
         mula();
-        newTroll();
+        newTroll(7);
         items.put(7, "Treasure Chest");
         visited.put(7, true);
         System.out.println("You can only go (w/s");
@@ -320,7 +320,7 @@ public class Zork1 {
         System.out.println("HOORAH!!! You have found SECRET Room !!!");
         System.out.println("You are in Room# 8 Secret \tContains : piles of gold\tYou can only go (w)");
         mula();
-        newTroll();
+        newTroll(8);
         items.put(8, "Piles of Gold");
         visited.put(8, true);
         System.out.print("Enter Direction: ");
