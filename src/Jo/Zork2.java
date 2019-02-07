@@ -1,6 +1,6 @@
-package com.company;
+package Jo;
 
-        import java.util.*;
+import java.util.*;
 
 /**
  *

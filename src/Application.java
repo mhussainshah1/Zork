@@ -1,5 +1,3 @@
-package com.company;
-
 /**
  * @author djw
  * Methods allow you to divide your program into workable, reusable components
