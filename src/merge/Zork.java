@@ -96,6 +96,7 @@ public class Zork {
             answer = keyboard.next();
         } while (answer.equals("y"));
     }
+
     //1
     public static int foyer(char direction) {
         int room = 1;

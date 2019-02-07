@@ -4,24 +4,21 @@ public class Room {
     private int roomNumber;
     private String roomName;
     private String item;
-    private String diections;
+    private String directions;
     private boolean found;
     private int money;
 
-    public Room(int roomNumber, String roomName, String item, String diections) {
+    public Room(int roomNumber, String roomName, String item, String directions) {
         this.roomNumber = roomNumber;
         this.roomName = roomName;
         this.item = item;
-        this.diections = diections;
+        this.directions = directions;
     }
 
     public int getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
 
     public String getRoomName() {
         return roomName;
@@ -62,7 +59,7 @@ public class Room {
         return "You are in roomNumber=" + roomNumber +
                 ", roomName='" + roomName + '\'' +
                 ", item contains='" + item + '\'' +
-                ", direction & room number ='" + diections + '\'' +
+                ", direction & room number ='" + directions + '\'' +
                 '}';
     }
 }
